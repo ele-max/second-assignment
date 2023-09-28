@@ -1,0 +1,22 @@
+import math
+
+def PROB():
+    with open('rosalind_prob.txt', 'r') as f:
+        DNA = f.readline()
+        for line in f:
+            if line[0] != 'A' and line[0] != 'T' and line[0] != 'G' and line[0] != 'C':
+                A_array = line.split()
+                GC_content = [float(x) for x in A_array]
+        A = DNA.count('A')
+        C = DNA.count('C')
+        G = DNA.count('G')
+        T = DNA.count('T')
+        AT = A + T
+        GC = G + C
+
+        B_array = []
+        for numb in range(len(GC_content)):
+            prob = AT*(math.log10((1-GC_content[numb])/2)) + GC*(math.log10(GC_content[numb]/2))
+            B_array.append(prob)
+        print(*B_array, sep=' ')
+PROB()
